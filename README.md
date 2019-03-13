@@ -13,9 +13,18 @@ customers to prove control of a domain name.
 3. Create a `gandi.ini` config file with the following contents and apply `chmod 600 gandi.ini` on it:
    ```
    certbot_plugin_gandi:dns_api_key=APIKEY
+   certbot_plugin_gandi:sharing_id=SHARING_ID
    ```
    Replace `APIKEY` with your Gandi API key and ensure permissions are set
    to disallow access to other users.
+   
+   [Optional] Replace `SHARING_ID` with your organization UUID.
+   This setting is mandatory when your user is part of an organization and this organization owns the domain.
+   To find this UUID, in the Gandi administration website, go to "Organizations" and click on this organization. Get the SHARING_ID from the url which looks like as below :
+   
+   ```
+   https://admin.gandi.net/organizations/<SOME_UUID>/organizations/<ORGANIZATION_NAME>/<SHARING_ID>
+   ```
 
 4. Run `certbot` and direct it to use the plugin for authentication and to use
    the config file previously created:

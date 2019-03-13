@@ -38,9 +38,7 @@ class Authenticator(dns_common.DNSAuthenticator):
         self.credentials = self._configure_credentials(
             'credentials',
             'Gandi credentials INI file',
-            {
-                'api-key': 'API key for Gandi account'
-            }
+            {'api-key': 'API key for Gandi account', 'sharing_id': 'Organization\'s sharing UUID'}
         )
 
 
@@ -57,4 +55,4 @@ class Authenticator(dns_common.DNSAuthenticator):
 
 
     def _get_gandi_config(self):
-        return gandi_api.get_config(api_key = self.credentials.conf('api-key'))
+        return gandi_api.get_config(api_key=self.credentials.conf('api-key'), sharing_id=self.credentials.conf('sharing_id'))
